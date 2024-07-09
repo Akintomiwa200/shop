@@ -1,7 +1,6 @@
 
 
 
-
 import React, { useState } from 'react';
 import products from './data';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaPlus, FaMinus } from 'react-icons/fa';
