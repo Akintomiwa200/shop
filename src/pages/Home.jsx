@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../components/prod/Header2'
-// import Header from '../components/Header'
+//import Header from '../components/prod/Header2'
+import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Banner from '../components/Banner'
 import ProductDisplay from '../components/ProductDisplay'
