@@ -27,6 +27,10 @@ const router = createBrowserRouter([
         path: '/checkout',
         element: <Checkout />
     },
+    {
+        path:'/correct',
+        element: <DoneModal />
+    },
 
 
 

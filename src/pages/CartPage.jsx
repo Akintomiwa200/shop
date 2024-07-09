@@ -17,10 +17,10 @@ const CartPage = () => {
     return (
         <div className='m-0 p-0 overflow-hidden flex flex-col justify-center items-center'>
             <Header2 />
-            <div className='flex flex-col w-full justify-center items-center '>
+            <div className='flex flex-col w-[90vw] justify-center items-center m-0 p-0'>
                 <h2 className="text-2xl font-bold my-6">Carts (2)</h2>
-                <div className="flex flex-col  justify-center lg:flex-row p-4 lg:p-8">
-                    <div className='w-[80vw] flex'>
+                <div className="flex flex-col  justify-center p-4 lg:p-8">
+                    <div className='w-[80vw] grid m-0 p-0 place-items-center md:flex'>
                         <Cart />
                         <Summary subtotal={subtotal} discount={discount} total={total} />
                     </div>

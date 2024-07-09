@@ -17,10 +17,10 @@ const Cart = () => {
     };
 
     return (
-        <div className="w-[45em] lg:w-2/3 mx-auto border-t-4">
+        <div className="w-[90%] md:w-[45em] mx-auto border-t-4">
             
             {products.map((product, index) => (
-                <div key={product.id} className="flex justify-between items-center mb-4 p-4 bg-white rounded w-full">
+                <div key={product.id} className="W-full flex justify-between items-center mb-4 p-4 bg-white rounded w-full">
                     <img src={product.imageUrl} alt={product.name} className="w-16 h-16 object-cover rounded" />
                     <div className="ml-4 flex-1">
                         <h3 className="text-lg font-bold">{product.name}</h3>

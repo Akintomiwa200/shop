@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <div className='container flex items-center justify-center'>
-      <header className="bg-white w-full lg:w-[80em] h-[9em]">
+      <div className="bg-white w-full lg:w-[80em] h-[9em]">
         <div className="mx-auto flex items-center justify-between py-4 px-6">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold text-blue-600">
@@ -51,7 +51,7 @@ const Header = () => {
             </nav>
           </div>
         )}
-      </header>
+      </div>
     </div>
   );
 };
