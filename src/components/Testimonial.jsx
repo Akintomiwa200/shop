@@ -16,18 +16,18 @@ const Testimonial = () => {
     const currentTestimonial = testimonials[currentIndex];
 
     return (
-        <div className="bg-blue-50 py-8">
-            <h2 className="text-2xl font-bold text-center mb-6">Our Customers Review</h2>
-            <div className="flex flex-col justify-center items-center space-x-4">
+        <div className="bg-blue-50 py-16 w-full">
+            <h2 className="text-xl md:text-3xl font-bold text-center mb-6">Our Customers Review</h2>
+            <div className="flex flex-col justify-center items-center space-x-4 ">
 
-                <div className="bg-white p-4 rounded shadow-md flex items-center w-[33.4625em] h-[15em] mb-8 gap-4">
+                <div className="bg-white p-4 rounded shadow-2xl flex items-center w-[80%] md:w-[33.4625em] h-[10em] md:h-[15em] mb-8 gap-4 ">
                     <img
                         src={currentTestimonial.imageUrl}
                         alt={currentTestimonial.name}
-                        className="w-24 h-24 mx-auto"
+                        className=" w-16 h-16 md:w-24 md:h-24 mx-auto"
                     />
                     <div className="flex flex-col items-start">
-                        <p className="text-left text-gray-600 mt-2 w-72">{currentTestimonial.comment}</p>
+                        <p className=" text-xs text-left text-gray-600 mt-2 w-54 md:text-xl md:w-72">{currentTestimonial.comment}</p>
                         <div className="flex justify-center mt-4">
                             {[...Array(currentTestimonial.rating)].map((_, index) => (
                                 <FaStar key={index} className="text-yellow-500" />

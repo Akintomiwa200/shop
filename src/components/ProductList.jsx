@@ -84,7 +84,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="grid w-[80vw] grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid w-[80vw] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {products.map((product, index) => (
         <div key={product.id} className="p-4">
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
@@ -95,16 +95,16 @@ const ProductList = () => {
           </div>
           <span className='flex items-center justify-between'>
             <span className="text-lg font-semibold">₦{product.price}</span>
-            <div className="flex items-center mt-2">
+            <div className="flex items-center mt-2 text-xs md:text-xl">
               <button
                 onClick={() => decrementQuantity(index)}
-                className="p-2 bg-gray-200 rounded-full text-gray-800 hover:bg-gray-300">
+                className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300">
                 <FaMinus />
               </button>
-              <span className="px-4">{quantities[index]}</span>
+              <span className="px-4 text-xs md:text-xl">{quantities[index]}</span>
               <button
                 onClick={() => incrementQuantity(index)}
-                className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 text-gray-800">
+                className="pl-1 bg-gray-200 rounded-full hover:bg-gray-300 text-gray-800 text-xs md:text-xl">
                 <FaPlus />
               </button>
             </div></span>

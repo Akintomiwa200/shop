@@ -10,8 +10,8 @@ const ProductDisplay = () => {
             </div>
 
             <ProductList />
-            <div>
-                <button>view more</button>
+            <div className='flex w-[80vw] justify-end my-8 mb-32'>
+                <button className='px-4 p-2 border border-blue-500 rounded-2xl'>view more</button>
             </div>
         </div>
     );

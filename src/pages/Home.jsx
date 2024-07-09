@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 
 const Home = () => {
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center overflow-hidden'>
       <Header />
       <Hero />
       <Banner />

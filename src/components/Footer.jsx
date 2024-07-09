@@ -6,11 +6,11 @@ import ig from '../assets/landingimage/Vector.png'
 
 const Footer = () => {
     return (
-        <footer className="bg-blue-700 text-white py-8">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
+        <footer className="w-[100vw] h-auto md:h-[40vh] bg-blue-700 text-white  flex flex-col justify-center items-center m-0 py-8">
+            <div className="w-[90vw] mx-auto grid grid-row-1 place-items-center md:grid-cols-4 gap-8 text-center">
+                <div className='w-[30vw]'>
                     <img src={logo} alt="img" />
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                    <button className="bg-blue-500 text-white md:px-4 py-2 rounded text-xs px-2 md:xl">
                         Download App on IOS & Android
                     </button>
                 </div>
@@ -34,9 +34,9 @@ const Footer = () => {
                         <li>Terms & Conditions</li>
                     </ul>
                 </div>
-                <div className="text-center flex flex-col items-center mt-4">
+                <div className="md:text-center md:flex flex-col md:items-center mt-4">
 
-                    <h3 className="text-lg font-bold mb-2">ABOUT</h3>
+                    <h3 className="text-lg font-bold mb-2">Help</h3>
                     <ul>
                         <li className='my-1'>Contact Us</li>
                         <li>Follow Us</li>
