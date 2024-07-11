@@ -40,7 +40,7 @@ const ProductList = () => {
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
           <h2 className="text-xl font-bold mt-2 text-justify">{product.name}</h2>
           <p className='text-xs lg:xl text-justify'>{product.description}</p>
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex items-center gap-4 mt-2 text-xs lg:text-xl">
             {renderRating(product.rating)}<span className='gap-2 text-xs'>{product.rating}({product.reviews})</span>
           </div>
           <span className='flex items-center justify-between'>
