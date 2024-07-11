@@ -17,7 +17,7 @@ const Cart = () => {
     };
 
     return (
-        <div className="w-[90%] md:w-[45em] border-t-4">
+        <div className="w-[90%] md:w-[45em] border-t-4 justify-between items-center">
 
             {products.map((product, index) => (
                 <div key={product.id} className="flex justify-between items-center mb-4 p-4 bg-white rounded w-[80vw] md:w-full">
