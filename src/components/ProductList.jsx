@@ -38,8 +38,8 @@ const ProductList = () => {
       {products.map((product, index) => (
         <div key={product.id} className="p-4 w-[40vw]">
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-          <h2 className="text-xl font-bold mt-2 text-justify">{product.name}</h2>
-          <p className='text-xs lg:xl text-justify'>{product.description}</p>
+          <h2 className="text-sm font-bold mt-2 text-justify">{product.name}</h2>
+          <p className='text-xs lg:xl'>{product.description}</p>
           <div className="flex items-center gap-4 mt-2 text-xs lg:text-xl">
             {renderRating(product.rating)}<span className='gap-2 text-xs'>{product.rating}({product.reviews})</span>
           </div>
