@@ -6,9 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        libre: ['"inter"', ...defaultTheme.fontFamily.sans]
-      }
+      
     },
   },
   plugins: [],
