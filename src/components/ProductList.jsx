@@ -51,7 +51,7 @@ const ProductList = () => {
                 className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300">
                 <FaMinus />
               </button>
-              <span className="px-4 text-xs md:text-xl">{quantities[index]}</span>
+              <span className="px-2 text-xs md:text-xl">{quantities[index]}</span>
               <button
                 onClick={() => incrementQuantity(index)}
                 className="pl-1 bg-gray-200 rounded-full hover:bg-gray-300 text-gray-800 text-xs md:text-xl">
