@@ -44,7 +44,7 @@ const ProductList = () => {
             {renderRating(product.rating)}<span className='gap-2'>{product.rating}({product.reviews})</span>
           </div>
           <span className='flex items-center justify-between'>
-            <span className="text-lg font-semibold">₦{product.price}</span>
+            <span className="text-xs md:text-lg font-semibold">₦{product.price}</span>
             <div className="flex items-center mt-2 text-xs md:text-xl">
               <button
                 onClick={() => decrementQuantity(index)}
