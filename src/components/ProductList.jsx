@@ -34,17 +34,17 @@ const ProductList = () => {
   };
 
   return (
-    <div className="grid w-[80vw] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 md:p-1 ">
+    <div className="grid w-[80vw] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {products.map((product, index) => (
-        <div key={product.id} w-[35vw] lg:w-auto className="p-4">
+        <div key={product.id} className="p-4">
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-          <h2 className="flex md:text-xs text-xl w-full font-bold mt-2">{product.name}</h2>
-          <p className=' flex text-xs lg:text-xl' w-full >{product.description}</p>
-          <div className="flex items-center text-xs lg:text-xl gap-1 lg:gap-2 mt-2">
+          <h2 className="text-xl font-bold mt-2">{product.name}</h2>
+          <p>{product.description}</p>
+          <div className="flex items-center gap-4 mt-2">
             {renderRating(product.rating)}<span className='gap-2'>{product.rating}({product.reviews})</span>
           </div>
           <span className='flex items-center justify-between'>
-            <span className="text-xs md:text-lg font-semibold">₦{product.price}</span>
+            <span className="text-lg font-semibold">₦{product.price}</span>
             <div className="flex items-center mt-2 text-xs md:text-xl">
               <button
                 onClick={() => decrementQuantity(index)}
