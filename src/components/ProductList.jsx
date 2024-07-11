@@ -36,10 +36,10 @@ const ProductList = () => {
   return (
     <div className="grid w-[80vw] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 ">
       {products.map((product, index) => (
-        <div key={product.id} className="p-8 md-4">
+        <div key={product.id} className="p-8">
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-          <h2 className="md:text-xs text-xl font-bold mt-2">{product.name}</h2>
-          <p className='text-xs lg:text-xl'>{product.description}</p>
+          <h2 className="md:text-xs text-xl w-full font-bold mt-2">{product.name}</h2>
+          <p className='text-xs lg:text-xl' w-full >{product.description}</p>
           <div className="flex items-center text-xs lg:text-xl gap-1 lg:gap-2 mt-2">
             {renderRating(product.rating)}<span className='gap-2'>{product.rating}({product.reviews})</span>
           </div>
