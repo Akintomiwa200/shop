@@ -8,7 +8,7 @@ const PaymentMethod = () => {
 <h2 className="text-xl font-bold mb-4 flex justify-between">Payment Method <FaEdit className='text-blue-500' /></h2>
             <div className="flex flex-col justify-between items-center">
                 <p>Card</p>
-                <img src="https://e7.pngegg.com/pngimages/147/434/png-clipart-bank-of-montreal-mastercard-debit-card-credit-card-atm-card-mastercard-bank-debit-card.png" alt="Card" className="w-[20vw] h-[20vh] rounded" />
+                <img src="https://pngtree.com/freepng/a-bank-card_4464864.html" alt="Card" className=" w-[70vw] lg:w-[20vw] h-[20vh] rounded" />
             </div>
         </div>
     );
