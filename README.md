@@ -1,8 +1,4 @@
-Timbu shop application 
-
-
-this a simple e-commerce shop for clothes of different brand specifically for woman. 
-ut built with reqct qnd takwind css, highly responsive on all screens and pleasant. 
+# React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
