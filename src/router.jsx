@@ -1,7 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home'
 import CartPage from './pages/CartPage'
-import Checkout from './components/checkout/Checkout'
+import Checkout from './pages/Checkout'
+import Product from './pages/Product'
+import ProductDescription from './pages/ProductDescription'
+import Error404 from './pages/Error404'
+import DoneModal from './components/modal/DoneModal'
 
 
 const router = createBrowserRouter([
@@ -16,9 +20,21 @@ const router = createBrowserRouter([
     },
     {
         path: '/checkout',
-        element: <Checkout />
+        element: <Checkout />,
     },
-    
+    {
+        path: '/product',
+        element: <Product />
+    },
+    {
+        path: '/productdescribe',
+        element: <ProductDescription />
+    },
+    {
+        path: '/*',
+        element: <Error404/>,
+    }
+
 
 ]);
 export default router

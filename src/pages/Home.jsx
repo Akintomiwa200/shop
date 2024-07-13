@@ -1,11 +1,11 @@
 import React from 'react'
 //import Header from '../components/prod/Header2'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import Banner from '../components/Banner'
-import ProductDisplay from '../components/ProductDisplay'
-import Testimonial from '../components/Testimonial'
-import Footer from '../components/Footer'
+import Header from '../components/home/Header'
+import Hero from '../components/home/Hero'
+import Banner from '../components/home/Banner'
+import ProductDisplay from '../components/home/ProductDisplay'
+import Testimonial from '../components/home/Testimonial'
+import Footer from '../components/home/Footer'
 
 
 

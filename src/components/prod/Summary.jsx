@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Summary = ({ subtotal, total, discount }) => {
     return (
-        <div className="w-[90vw] md:w-[23vw] mx-auto mt-8 lg:mt-0 ">
+        <div className="w-[90vw] lg:w-[20vw] mx-auto mt-8 lg:mt-0 ">
 
             <div className="bg-white ">
                 <h2 className="text-xl font-bold mb-4">Summary</h2>
