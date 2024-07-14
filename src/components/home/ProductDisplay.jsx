@@ -17,7 +17,7 @@ const ProductDisplay = () => {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const url = new URL('/api/products');
+                const url = new URL('https://your-api-base-url.com/api/products'); // Replace with your actual base URL
                 url.searchParams.append('organization_id', organizationId);
                 url.searchParams.append('Appid', appId);
                 url.searchParams.append('Apikey', apiKey);
@@ -48,7 +48,7 @@ const ProductDisplay = () => {
     }, [organizationId, appId, apiKey, page]);
 
     const incrementPage = () => {
-        setPage(page + 1);
+        setPage((prevPage) => prevPage + 1);
     };
 
     const handleProductClick = (product) => {
@@ -75,7 +75,9 @@ const ProductDisplay = () => {
             )}
 
             <div className='flex w-[80vw] justify-end my-8 mb-32'>
-                <button onClick={incrementPage} className='px-4 p-2 border border-blue-500 rounded-2xl'>See More</button>
+                <button onClick={incrementPage} className='px-4 p-2 border border-blue-500 rounded-2xl'>
+                    {loading ? 'Loading...' : 'See More'}
+                </button>
             </div>
         </div>
     );
