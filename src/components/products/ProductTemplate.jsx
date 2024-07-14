@@ -6,7 +6,6 @@ const ProductTemplate = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
     // Hardcoded API details
@@ -14,15 +13,15 @@ const ProductTemplate = () => {
     const appId = '362YX3XEOKRR8TI';
     const apiKey = 'd9fde949791f45a99f75a2a68a97b97d20240712181346958569';
 
-    const fetchProducts = async (page) => {
+    const fetchAllProducts = async () => {
         setLoading(true);
         try {
             const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
             url.searchParams.append('organization_id', organizationId);
             url.searchParams.append('Appid', appId);
             url.searchParams.append('Apikey', apiKey);
-            url.searchParams.append('page', page);
-            url.searchParams.append('size', 10);
+            url.searchParams.append('page', 1);
+            url.searchParams.append('size', 1000); // Set a high number to fetch all products
 
             const response = await fetch(url.toString());
             if (!response.ok) {
@@ -35,7 +34,7 @@ const ProductTemplate = () => {
                     ...item,
                     key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
                 }));
-                setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+                setProducts(newProducts);
             }
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -44,12 +43,8 @@ const ProductTemplate = () => {
     };
 
     useEffect(() => {
-        fetchProducts(page);
-    }, [page]);
-
-    const incrementPage = () => {
-        setPage((prevPage) => prevPage + 1);
-    };
+        fetchAllProducts();
+    }, []);
 
     const handleProductClick = (product) => {
         setSelectedProduct(product);
@@ -77,12 +72,6 @@ const ProductTemplate = () => {
                     setModalOpen={setModalOpen}
                 />
             )}
-
-            <div className='flex w-[80vw] justify-end my-8 mb-32'>
-                <button onClick={incrementPage} className='px-4 p-2 border border-blue-500 rounded-2xl'>
-                    {loading ? 'Loading...' : 'See More'}
-                </button>
-            </div>
         </div>
     );
 };
