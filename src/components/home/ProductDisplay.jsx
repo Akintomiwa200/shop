@@ -9,10 +9,10 @@ const ProductDisplay = () => {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const organizationId = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
-    const appId = import.meta.env.VITE_REACT_APP_APPID;
-    const apiKey = import.meta.env.VITE_REACT_APP_APIKEY;
-    const reverseSort = import.meta.env.VITE_REACT_APP_REVERSE_SORT === 'true'; // Convert string to boolean
+    const organizationId = 'cc1fd1c5b89f4d58a57f0696d6794c3d';
+    const appId = '362YX3XEOKRR8TI';
+    const apiKey = 'd9fde949791f45a99f75a2a68a97b97d20240712181346958569';
+    const reverse_sort = false;
     const size = 10;
 
     const fetchProducts = async (page) => {
@@ -20,7 +20,7 @@ const ProductDisplay = () => {
         try {
             const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
             url.searchParams.append('organization_id', organizationId);
-            url.searchParams.append('reverse_sort', reverseSort);
+            url.searchParams.append('reverse_sort', reverse_sort);
             url.searchParams.append('page', page);
             url.searchParams.append('size', size);
             url.searchParams.append('Appid', appId);
