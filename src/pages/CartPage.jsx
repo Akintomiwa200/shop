@@ -12,7 +12,7 @@ import { CartContext } from '../context/CartContext';
 const CartPage = () => {
     const { cartItems } = useContext(CartContext);
     const subtotal = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
-    const discount = 10;
+    const discount = 0;
     const total = subtotal - discount;
 
     return (
