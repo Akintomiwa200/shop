@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaPlus, FaMinus } from 'react-icons/fa';
 import renderRating from './renderRating';
-import { CartContext } from '../../context/CartContext'; // Adjust the import path as needed
+import { CartContext } from '../../context/CartContext';
 
 const ProductList = ({ products, handleProductClick }) => {
   const { addToCart } = useContext(CartContext);
@@ -53,7 +53,6 @@ const ProductList = ({ products, handleProductClick }) => {
                   <FaPlus />
                 </button>
               </div>
-              
             </div>
           </div>
         </div>
