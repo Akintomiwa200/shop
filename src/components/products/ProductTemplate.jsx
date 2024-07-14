@@ -10,9 +10,9 @@ const ProductTemplate = () => {
     const [loading, setLoading] = useState(false);
 
     // Hardcoded API details
-    const organizationId = '08795f9d14134eab91870836779a7bad';
-    const appId = 'XOJ071P81OPLFDZ';
-    const apiKey = 'e01db212643a4df8adcec84fc49ac69920240713090305722296';
+    const organizationId = 'cc1fd1c5b89f4d58a57f0696d6794c3d';
+    const appId = '362YX3XEOKRR8TI';
+    const apiKey = 'd9fde949791f45a99f75a2a68a97b97d20240712181346958569';
 
     const fetchProducts = async (page) => {
         setLoading(true);
