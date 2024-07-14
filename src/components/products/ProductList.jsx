@@ -53,8 +53,12 @@ const ProductList = ({ products, handleProductClick }) => {
                   <FaPlus />
                 </button>
               </div>
-              
             </div>
+            <button
+              onClick={() => addToCart(product, quantities[index] || 1)}
+              className="mt-2 w-full bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600">
+              Add to Cart
+            </button>
           </div>
         </div>
       ))}
