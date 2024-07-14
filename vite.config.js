@@ -1,4 +1,3 @@
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,11 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/proxy": {
-        target: 'https://timbu-get-all-products.reavdev.workers.dev',
+      '/api': {
+        target: 'https://api.timbu.cloud',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/proxy/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
-  }
+  },
 })
