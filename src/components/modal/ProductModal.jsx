@@ -11,7 +11,7 @@ const ProductModal = ({ product, setModalOpen }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg w-1/2">
+            <div className="bg-white p-8 rounded-lg md:w-1/2 w-[100vw]">
                 <h2 className="text-2xl font-bold mb-4">{product.name}</h2>
                 <img src={`https://api.timbu.cloud/images/${product.photos[0]?.url}`} alt={product.name} className="w-full h-64 object-cover mb-4" />
                 <p className="mb-4">{product.description}</p>
