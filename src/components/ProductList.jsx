@@ -1,14 +1,12 @@
-
-
-
 import React, { useState } from 'react';
-import products from './data';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaPlus, FaMinus } from 'react-icons/fa';
+import products from './data';  // Ensure the correct path to your data file
 
 const renderRating = (rating) => {
   const fullStars = Math.floor(rating);
   const halfStar = rating - fullStars >= 0.5;
   const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+  
   return (
     <div className="flex items-center">
       {[...Array(fullStars)].map((_, index) => (
@@ -36,28 +34,34 @@ const ProductList = () => {
   return (
     <div className="grid w-[90vw] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center">
       {products.map((product, index) => (
-        <div key={product.id} className="p-4 w-[40vw]">
+        <div key={product.id} className="p-4 w-full">
           <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-          <h2 className="text-sm font-bold mt-2 text-justify">{product.name}</h2>
-          <p className='text-xs lg:xl'>{product.description}</p>
+          <h2 className="text-sm font-bold mt-2 text-justify">
+            {product.name.length > 20 ? product.name.slice(0, 20) + '...' : product.name}
+          </h2>
+          <p className='text-xs lg:text-xl'>{product.description}</p>
           <div className="flex items-center gap-4 mt-2 text-xs lg:text-xl">
-            {renderRating(product.rating)}<span className='gap-2 text-xs'>{product.rating}({product.reviews})</span>
+            {renderRating(product.rating)}
+            <span className='gap-2 text-xs'>{product.rating} ({product.reviews})</span>
           </div>
-          <span className='flex items-center justify-between'>
+          <div className='flex items-center justify-between mt-2'>
             <span className="text-xs lg:text-lg font-semibold">₦{product.price}</span>
-            <div className="flex items-center mt-2 text-xs text-xs md:text-xl">
+            <div className="flex items-center">
               <button
                 onClick={() => decrementQuantity(index)}
-                className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300">
+                className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300"
+              >
                 <FaMinus />
               </button>
               <span className="px-2 text-xs md:text-xl">{quantities[index]}</span>
               <button
                 onClick={() => incrementQuantity(index)}
-                className="pl-1 bg-gray-200 rounded-full hover:bg-gray-300 text-gray-800 text-xs md:text-xl">
+                className="pl-1 bg-gray-200 rounded-full hover:bg-gray-300 text-gray-800 text-xs md:text-xl"
+              >
                 <FaPlus />
               </button>
-            </div></span>
+            </div>
+          </div>
         </div>
       ))}
     </div>
