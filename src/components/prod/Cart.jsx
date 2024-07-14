@@ -6,7 +6,7 @@ const Cart = () => {
     const { cartItems, handleQuantityChange, handleRemoveItem } = useContext(CartContext);
 
     return (
-        <div className="w-[90%] md:w-[45em] border-t-4">
+        <div className="w-[90%] flex items-center md:w-[45em] border-t-4">
             {cartItems.map((item, index) => (
                 <div key={index} className="flex justify-between items-center mb-4 p-4 bg-white rounded w-[70vw] md:w-full">
                     <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
