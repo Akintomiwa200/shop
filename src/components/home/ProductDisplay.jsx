@@ -1,84 +1,61 @@
-import React, { useState, useEffect } from 'react';
+
+response 1   import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductList from './ProductList';
 import ProductModal from '../modal/ProductModal';
 
 const ProductDisplay = () => {
-    const [selectedProduct, setSelectedProduct] = useState(null);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-    const organizationId = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
-    const appId = import.meta.env.VITE_REACT_APP_APPID;
-    const apiKey = import.meta.env.VITE_REACT_APP_APIKEY;
+  const organizationId = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
+  const appId = import.meta.env.VITE_REACT_APP_APPID;
+  const apiKey = import.meta.env.VITE_REACT_APP_APIKEY;
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get('/api/products', {
-                    params: {
-                        organization_id: organizationId,
-                        Appid: appId,
-                        Apikey: apiKey,
-                        page,
-                        size: 10,
-                    },
-                });
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('/api/products', {
+          params: {
+            organization_id: organizationId,
+            Appid: appId,
+            Apikey: apiKey,
+            page,
+            size: 10,
+          },
+        });
 
-                if (response.data && Array.isArray(response.data.items)) {
-                    const newProducts = response.data.items.map((item, index) => ({
-                        ...item,
-                        key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
-                    }));
-                    setProducts((prev) => [...prev, ...newProducts]);
-                } else {
-                    console.error("Unexpected response structure:", response.data);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
-            setLoading(false);
-        };
-
-        fetchProducts();
-    },
-    [organizationId, appId, apiKey, page]);
-
-    const incrementPage = () => {
-        setPage(page + 1);
+        if (response.data && Array.isArray(response.data.items)) {
+          const newProducts = response.data.items.map((item, index) => ({
+            ...item,
+            key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
+          }));
+          setProducts((prev) => [...prev, ...newProducts]);
+        } else {
+          console.error("Unexpected response structure:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+      setLoading(false);
     };
 
-    const handleProductClick = (product) => {
-        setSelectedProduct(product);
-        setModalOpen(true);
-    };
+    fetchProducts();
+  }, [organizationId, appId, apiKey, page]);
 
-    return (
-        <div className="container flex flex-col justify-center items-center">
-            <div className='flex items-start justify-start text-left w-[80em]'>
-                <h1 className="text-4xl font-bold my-8">Popular Products</h1>
-            </div>
+  const incrementPage = () => {
+    setPage(page + 1);
+  };
 
-            <ProductList
-                products={products}
-                handleProductClick={handleProductClick}
-            />
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
 
-            {modalOpen && (
-                <ProductModal
-                    product={selectedProduct}
-                    setModalOpen={setModalOpen}
-                />
-            )}
-
-            <div className='flex w-[80vw] justify-end my-8 mb-32'>
-                <button onClick={incrementPage} className='px-4 p-2 border border-blue-500 rounded-2xl'>See More</button>
-            </div>
-        </div>
-    );
-};
-
-export default ProductDisplay;
+  return (
+    <div className="container flex flex-col justify-center items-center">
+      <div
