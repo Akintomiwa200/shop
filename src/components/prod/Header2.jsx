@@ -42,7 +42,7 @@ const Header2 = () => {
                             <Link to="/" className="text-gray-700 block hover:text-blue-600">Home</Link>
                             <Link to="/" className="text-gray-700 block hover:text-blue-600">Shop</Link>
                             <Link to="/products" className="text-gray-700 block hover:text-blue-600">Products</Link>
-                            <Link to="/" className="text-gray-700 block hover:text-blue-600">Contact Us</Link>
+                            <Link to="/product" className="text-gray-700 block hover:text-blue-600">Contact Us</Link>
                             <Link to='/cart' className="text-gray-700 block hover:text-blue-600">
                                 <FaCartShopping className='text-black' />
                             </Link>
