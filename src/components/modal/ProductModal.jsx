@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../../context/CartContext'; // Adjust the import path as needed
 
 const ProductModal = ({ product, setModalOpen }) => {
-    const addToCart = () => {
-        // Add to cart functionality here
-        setModalOpen(false);
+    const { addToCart } = useContext(CartContext);
+
+    const handleAddToCart = () => {
+        addToCart(product); // Add product to cart
+        setModalOpen(false); // Close the modal after adding to cart
     };
 
     return (
@@ -13,7 +16,7 @@ const ProductModal = ({ product, setModalOpen }) => {
                 <img src={`https://api.timbu.cloud/images/${product.photos[0]?.url}`} alt={product.name} className="w-full h-64 object-cover mb-4" />
                 <p className="mb-4">{product.description}</p>
                 <p className="mb-4 font-semibold">₦{product.current_price[0].NGN[0]}</p>
-                <button onClick={addToCart} className="px-4 py-2 bg-blue-500 text-white rounded">Add to Cart</button>
+                <button onClick={handleAddToCart} className="px-4 py-2 bg-blue-500 text-white rounded">Add to Cart</button>
                 <button onClick={() => setModalOpen(false)} className="px-4 py-2 bg-red-500 text-white rounded ml-4">Close</button>
             </div>
         </div>

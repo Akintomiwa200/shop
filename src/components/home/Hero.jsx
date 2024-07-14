@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import lady from '../../assets/landingimage/img11.png';
 
 const Hero = () => {
+    const countdownDate = new Date('2024-07-30T00:00:00Z');
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    function calculateTimeLeft() {
+        const difference = +countdownDate - +new Date();
+        let timeLeft = {};
+
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60)
+            };
+        }
+
+        return timeLeft;
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    });
+
+    const { days, hours, minutes, seconds } = timeLeft;
+
     return (
         <div className='container py-8 flex justify-center items-center'>
             <section className="bg-purple-600 py-8 text-white justify-between items-center space-x-4 rounded-xl flex px-4 lg:px-24 mx-4 lg:mx-16 w-full lg:w-[80em] h-auto lg:h-[40em] flex-col lg:flex-row text-center lg:text-left md:py-32">
@@ -18,19 +47,19 @@ const Hero = () => {
                         <p className="text-lg">Hurry, Before It's Too Late!</p>
                         <div className="flex justify-center lg:justify-start space-x-4 mt-4">
                             <div className="text-center">
-                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">02</span>
+                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">{days}</span>
                                 <span>Days</span>
                             </div>
                             <div className="text-center">
-                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">06</span>
+                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">{hours}</span>
                                 <span>Hr</span>
                             </div>
                             <div className="text-center">
-                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">35</span>
+                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">{minutes}</span>
                                 <span>Mins</span>
                             </div>
                             <div className="text-center">
-                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">30</span>
+                                <span className="block text-4xl font-bold p-2 rounded bg-white text-purple-600">{seconds}</span>
                                 <span>Sec</span>
                             </div>
                         </div>

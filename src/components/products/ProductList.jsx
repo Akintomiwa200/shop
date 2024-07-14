@@ -40,7 +40,7 @@ const ProductList = ({ products, handleProductClick }) => {
               {product.current_price && product.current_price[0] && product.current_price[0].NGN && (
                 <span className="text-xs lg:text-lg font-semibold">₦{product.current_price[0].NGN[0]}</span>
               )}
-              <div className="flex items-center mt-2 text-xs text-xs md:text-xl">
+              <div className="flex items-center mt-2 md:text-xl">
                 <button
                   onClick={(e) => { e.stopPropagation(); decrementQuantity(index); }}
                   className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300 md:p-2">

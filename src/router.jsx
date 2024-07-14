@@ -5,7 +5,7 @@ import Checkout from './pages/Checkout'
 import Product from './pages/Product'
 import ProductDescription from './pages/ProductDescription'
 import Error404 from './pages/Error404'
-import DoneModal from './components/modal/DoneModal'
+
 
 
 const router = createBrowserRouter([
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/*',
-        element: <Error404/>,
+        element: <Error404 />,
     }
 
 

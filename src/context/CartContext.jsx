@@ -1,49 +1,47 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
 
-    const addToCart = (product, quantity) => {
-        const existingIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingIndex !== -1) {
-            const updatedCartItems = [...cartItems];
-            updatedCartItems[existingIndex].quantity += quantity;
+    const addToCart = (product, quantity = 1) => {
+        const existingItem = cartItems.find((item) => item.name === product.name);
+
+        if (existingItem) {
+            const updatedCartItems = cartItems.map((item) =>
+                item.name === product.name ? { ...item, quantity: item.quantity + quantity } : item
+            );
             setCartItems(updatedCartItems);
         } else {
-            const newItem = { ...product, quantity };
-            setCartItems([...cartItems, newItem]);
+            const newCartItem = {
+                id: product.id,
+                name: product.name,
+                price: product.current_price[0].NGN[0],
+                image: `https://api.timbu.cloud/images/${product.photos[0].url}`,
+                quantity: quantity,
+            };
+            setCartItems([...cartItems, newCartItem]);
         }
     };
 
-    const removeFromCart = (productId) => {
-        const updatedCartItems = cartItems.filter(item => item.id !== productId);
-        setCartItems(updatedCartItems);
+    const handleQuantityChange = (index, delta) => {
+        const newCartItems = [...cartItems];
+        newCartItems[index].quantity += delta;
+        if (newCartItems[index].quantity < 1) newCartItems[index].quantity = 1;
+        setCartItems(newCartItems);
     };
 
-    const updateQuantity = (productId, quantity) => {
-        const updatedCartItems = cartItems.map(item =>
-            item.id === productId ? { ...item, quantity } : item
-        );
-        setCartItems(updatedCartItems);
-    };
-
-    const clearCart = () => {
-        setCartItems([]);
+    const handleRemoveItem = (index) => {
+        const newCartItems = cartItems.filter((_, i) => i !== index);
+        setCartItems(newCartItems);
     };
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, handleQuantityChange, handleRemoveItem }}>
             {children}
         </CartContext.Provider>
     );
 };
 
-export const useCart = () => {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error('useCart must be used within a CartProvider');
-    }
-    return context;
-};
+export default CartProvider;
