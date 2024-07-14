@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ProductList from './ProductList';
 import ProductModal from '../modal/ProductModal';
 
@@ -7,52 +6,50 @@ const ProductTemplate = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const organizationId = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
-    const appId = import.meta.env.VITE_REACT_APP_APPID;
-    const apiKey = import.meta.env.VITE_REACT_APP_APIKEY;
+    // Hardcoded API details
+    const organizationId = '08795f9d14134eab91870836779a7bad';
+    const appId = 'XOJ071P81OPLFDZ';
+    const apiKey = 'e01db212643a4df8adcec84fc49ac69920240713090305722296';
 
-    useEffect(() => {
-        const fetchAllProducts = async () => {
-            setLoading(true);
-            let allProducts = [];
-            let currentPage = 1;
-            let fetchMore = true;
+    const fetchProducts = async (page) => {
+        setLoading(true);
+        try {
+            const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
+            url.searchParams.append('organization_id', organizationId);
+            url.searchParams.append('Appid', appId);
+            url.searchParams.append('Apikey', apiKey);
+            url.searchParams.append('page', page);
+            url.searchParams.append('size', 10);
 
-            try {
-                while (fetchMore) {
-                    const response = await axios.get('/api/products', {
-                        params: {
-                            organization_id: organizationId,
-                            Appid: appId,
-                            Apikey: apiKey,
-                            page: currentPage,
-                            size: 10,
-                        },
-                    });
-
-                    if (response.data && Array.isArray(response.data.items) && response.data.items.length > 0) {
-                        const newProducts = response.data.items.map((item, index) => ({
-                            ...item,
-                            key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
-                        }));
-                        allProducts = [...allProducts, ...newProducts];
-                        currentPage += 1;
-                    } else {
-                        fetchMore = false;
-                    }
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
+            const response = await fetch(url.toString());
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
 
-            setProducts(allProducts);
-            setLoading(false);
-        };
+            const data = await response.json();
+            if (data && Array.isArray(data.items) && data.items.length > 0) {
+                const newProducts = data.items.map((item, index) => ({
+                    ...item,
+                    key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
+                }));
+                setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+        setLoading(false);
+    };
 
-        fetchAllProducts();
-    }, [organizationId, appId, apiKey]);
+    useEffect(() => {
+        fetchProducts(page);
+    }, [page]);
+
+    const incrementPage = () => {
+        setPage((prevPage) => prevPage + 1);
+    };
 
     const handleProductClick = (product) => {
         setSelectedProduct(product);
@@ -62,7 +59,7 @@ const ProductTemplate = () => {
     return (
         <div className="container flex flex-col justify-center items-center">
             <div className='flex items-start justify-start text-left w-[80em]'>
-            
+                <h1 className="text-4xl font-bold my-8">Popular Products</h1>
             </div>
 
             {loading ? (
@@ -80,6 +77,12 @@ const ProductTemplate = () => {
                     setModalOpen={setModalOpen}
                 />
             )}
+
+            <div className='flex w-[80vw] justify-end my-8 mb-32'>
+                <button onClick={incrementPage} className='px-4 p-2 border border-blue-500 rounded-2xl'>
+                    {loading ? 'Loading...' : 'See More'}
+                </button>
+            </div>
         </div>
     );
 };
