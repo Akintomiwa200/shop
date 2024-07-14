@@ -9,43 +9,39 @@ const ProductDisplay = () => {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const organizationId = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
-    const appId = import.meta.env.VITE_REACT_APP_APPID;
-    const apiKey = import.meta.env.VITE_REACT_APP_APIKEY;
+    const organizationId = '08795f9d14134eab91870836779a7bad';
+    const appId = 'XOJ071P81OPLFDZ';
+    const apiKey = 'e01db212643a4df8adcec84fc49ac69920240713090305722296';
+    const reverse_sort = false;
+    const size = 10;
+
+    const fetchProducts = async (page) => {
+        setLoading(true);
+        try {
+            const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
+            url.searchParams.append('organization_id', organizationId);
+            url.searchParams.append('reverse_sort', reverse_sort);
+            url.searchParams.append('page', page);
+            url.searchParams.append('size', size);
+            url.searchParams.append('Appid', appId);
+            url.searchParams.append('Apikey', apiKey);
+
+            const response = await fetch(url.toString());
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            setProducts((prevProducts) => [...prevProducts, ...data.items]);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+        setLoading(false);
+    };
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const url = new URL('https://your-api-base-url.com/api/products'); // Replace with your actual base URL
-                url.searchParams.append('organization_id', organizationId);
-                url.searchParams.append('Appid', appId);
-                url.searchParams.append('Apikey', apiKey);
-                url.searchParams.append('page', page);
-                url.searchParams.append('size', 10);
-
-                const response = await fetch(url.toString());
-                const data = await response.json();
-                
-                console.log('API response:', data); // Log the API response for debugging
-                
-                if (data && Array.isArray(data.items)) {
-                    const newProducts = data.items.map((item, index) => ({
-                        ...item,
-                        key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
-                    }));
-                    setProducts((prev) => [...prev, ...newProducts]);
-                } else {
-                    console.error("Unexpected response structure:", data);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
-            setLoading(false);
-        };
-
-        fetchProducts();
-    }, [organizationId, appId, apiKey, page]);
+        fetchProducts(page);
+    }, [page]);
 
     const incrementPage = () => {
         setPage((prevPage) => prevPage + 1);
