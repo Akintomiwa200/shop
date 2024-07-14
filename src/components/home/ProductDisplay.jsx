@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ProductList from './ProductList';
 import ProductModal from '../modal/ProductModal';
 
@@ -18,24 +17,26 @@ const ProductDisplay = () => {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('/api/products', {
-                    params: {
-                        organization_id: organizationId,
-                        Appid: appId,
-                        Apikey: apiKey,
-                        page,
-                        size: 10,
-                    },
-                });
+                const url = new URL('/api/products');
+                url.searchParams.append('organization_id', organizationId);
+                url.searchParams.append('Appid', appId);
+                url.searchParams.append('Apikey', apiKey);
+                url.searchParams.append('page', page);
+                url.searchParams.append('size', 10);
 
-                if (response.data && Array.isArray(response.data.items)) {
-                    const newProducts = response.data.items.map((item, index) => ({
+                const response = await fetch(url.toString());
+                const data = await response.json();
+                
+                console.log('API response:', data); // Log the API response for debugging
+                
+                if (data && Array.isArray(data.items)) {
+                    const newProducts = data.items.map((item, index) => ({
                         ...item,
                         key: `${item.id}-${index}`, // Combine id and index to ensure unique keys
                     }));
                     setProducts((prev) => [...prev, ...newProducts]);
                 } else {
-                    console.error("Unexpected response structure:", response.data);
+                    console.error("Unexpected response structure:", data);
                 }
             } catch (error) {
                 console.error("Error fetching products:", error);
