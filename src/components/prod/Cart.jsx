@@ -15,10 +15,12 @@ const Cart = () => {
                      
                         <p className="text-lg font-semibold mt-2">₦{item.price * item.quantity}</p>
                         <div className="mt-2">
-                            <button onClick={() => handleRemoveItem(index)} className="px-4 py-2 bg-red-500 text-white rounded mr-2">Remove</button>
+                            <button onClick={() => handleRemoveItem(index)} className=" md:px-4 pxpy-2 text-red-600 rounded mr-2">Remove</button>
                         </div>
                         
-                           <div className="flex gap-2 mt-2">
+                          
+                    </div>
+                     <div className="flex gap-2 mt-2 border border-blue-400">
                             <button onClick={() => handleQuantityChange(index, -1)} className="p-2 bg-gray-200 rounded-full text-gray-800 hover:bg-gray-300">
                                 <FaMinus />
                             </button>
@@ -27,7 +29,6 @@ const Cart = () => {
                                 <FaPlus />
                             </button>
                         </div>
-                    </div>
                 </div>
             ))}
             {cartItems.length === 0 && (
