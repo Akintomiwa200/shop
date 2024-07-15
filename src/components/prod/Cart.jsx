@@ -10,7 +10,7 @@ const Cart = () => {
             {cartItems.map((item, index) => (
                 <div key={index} className="flex justify-between items-center mb-4 p-4 bg-white rounded w-[70vw] md:w-full">
                     <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
-                    <div className="ml-4 flex-1">
+                    <div className="ml-4 flex-1 w-[40vw] overflow-hidden md:w-full">
                         <h3 className="text-lg font-bold overflow-hidden whitespace-nowrap overflow-ellipsis">{item.name}</h3>
                      
                         <p className="text-lg font-semibold mt-2">₦{item.price * item.quantity}</p>
