@@ -18,7 +18,7 @@ const ProductDisplay = () => {
     const fetchProducts = async (page) => {
         setLoading(true);
         try {
-            const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
+            const url = new URL('https://api.timbu.cloud/');
             url.searchParams.append('organization_id', organizationId);
             url.searchParams.append('reverse_sort', reverse_sort);
             url.searchParams.append('page', page);
