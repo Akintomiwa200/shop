@@ -16,7 +16,13 @@ const ProductTemplate = () => {
     const fetchAllProducts = async () => {
         setLoading(true);
         try {
-            const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
+            
+            
+            
+            
+            const url = new URL('https://api.timbu.cloud/');
+           
+            //const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
             url.searchParams.append('organization_id', organizationId);
             url.searchParams.append('Appid', appId);
             url.searchParams.append('Apikey', apiKey);
