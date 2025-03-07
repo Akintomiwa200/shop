@@ -34,7 +34,17 @@ const PaymentMethod = () => {
                 {paymentType === 'Card' ? (
                     <Card number="1234 5678 9012 3456" name="John Doe" expiry="12/24" />
                 ) : (
-                    <p>Bank account information here</p>
+                    <div>
+                    <p>
+                        account number: 1234567890
+                    </p>
+                    <p>
+                        bank bank: heaven bank
+                    </p>
+                    <p>
+                        account name: Adedokun Peter Akintomiwa
+                    </p>
+                    </div>
                 )}
             </div>
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
