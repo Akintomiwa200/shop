@@ -20,7 +20,7 @@ const ProductTemplate = () => {
             
             
             
-            const url = new URL('https://api.timbu.cloud/');
+            const url = new URL('https://api.timbu.com/v2/');
            
             //const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
             url.searchParams.append('organization_id', organizationId);
