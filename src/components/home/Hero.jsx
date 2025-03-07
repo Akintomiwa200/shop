@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import lady from '../../assets/landingimage/img11.png';
 
 const Hero = () => {
-    const countdownDate = new Date('2024-07-30T00:00:00Z');
+    const countdownDate = new Date('2025-07-30T00:00:00Z');
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     function calculateTimeLeft() {
