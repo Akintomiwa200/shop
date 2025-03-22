@@ -28,7 +28,7 @@ const ProductList = ({ products, handleProductClick }) => {
           <div className="relative h-full flex flex-col justify-between">
             <div onClick={() => handleProductClick(product)}>
               {product.photos && product.photos[0] && (
-                <img src={`https://api.timbu.cloud/images/${product.photos[0].url}`} alt={product.name} className="w-full h-64 object-cover" />
+                <img src={`https://shoppy-pzzi.onrender.com/images/${product.photos[0].url}`} alt={product.name} className="w-full h-64 object-cover" />
               )}
               <h2 className="text-sm font-bold mt-2 text-justify overflow-hidden whitespace-nowrap overflow-ellipsis">{product.name}</h2>
               <p className='text-xs lg:xl overflow-hidden whitespace-nowrap overflow-ellipsis'>{product.description}</p>
@@ -40,7 +40,7 @@ const ProductList = ({ products, handleProductClick }) => {
               {product.current_price && product.current_price[0] && product.current_price[0].NGN && (
                 <span className="text-xs lg:text-lg font-semibold">₦{product.current_price[0].NGN[0]}</span>
               )}
-              <div className="flex items-center mt-2 text-xs text-xs md:text-xl">
+              <div className="flex items-center mt-2 text-xs md:text-xl">
                 <button
                   onClick={(e) => { e.stopPropagation(); decrementQuantity(index); }}
                   className="pl-1 bg-gray-200 rounded-full text-gray-800 text-xs md:text-xl hover:bg-gray-300 md:p-2">
