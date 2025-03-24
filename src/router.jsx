@@ -7,6 +7,14 @@ import ProductDescription from "./pages/ProductDescription";
 import Error404 from "./pages/Error404";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminSignup from "./pages/admin/AdminSignup";
+import AdminLayout from "./layout/AdminLayout";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Payment from "./pages/dashboard/payment/Payment";
+import ProductM from "./pages/dashboard/product/Product";
+import Users from "./pages/dashboard/users/Users";
+import Settings from "./pages/dashboard/settings/Settings";
 
 const router = createBrowserRouter([
   {
@@ -41,5 +49,43 @@ const router = createBrowserRouter([
     path: "/*",
     element: <Error404 />,
   },
+  {
+    path: "/auth/login",
+    element: <AdminLogin />
+  },
+  {
+    path: "/auth/register",
+    element: <AdminSignup />
+  },
+
+  {
+    path: "/admin/dashboard",
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />
+      },
+      {
+        path: "/admin/dashboard/payment",
+        element: <Payment />
+      },
+      {
+        path: "/admin/dashboard/products",
+        element: <ProductM />
+      },
+      {
+        path: "/admin/dashboard/users",
+        element:<Users/>
+      },
+      {
+        path: "/admin/dashboard/settings",
+        element: <Settings/>
+      }
+    ]
+  }
+  // {
+  //   path
+  // }
 ]);
 export default router;

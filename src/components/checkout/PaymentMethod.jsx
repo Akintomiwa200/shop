@@ -1,5 +1,4 @@
-// src/components/PaymentMethod.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import Modal from '../modal/Modal';
 import Card from './Card';
@@ -7,62 +6,53 @@ import Card from './Card';
 const PaymentMethod = () => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [paymentType, setPaymentType] = useState('Card');
+    const [tempPaymentType, setTempPaymentType] = useState(paymentType); // Temporary state for modal
+
+    useEffect(() => {
+        setTempPaymentType(paymentType); // Sync temp state with main state when modal opens
+    }, [isModalOpen]);
 
     const handleEditClick = () => {
         setModalOpen(true);
     };
 
-    const handlePaymentTypeChange = (e) => {
-        setPaymentType(e.target.value);
+    const handleSave = () => {
+        setPaymentType(tempPaymentType); // Update main payment type
+        setModalOpen(false);
     };
 
     return (
         <div className="bg-blue-50 p-4 rounded shadow-md mb-4 mr-16 w-full md:w-auto">
             <h2 className="text-xl font-bold mb-4 flex justify-between">
                 Payment Method
-                <FaEdit className='text-blue-500' onClick={handleEditClick} />
+                <FaEdit className="text-blue-500 cursor-pointer" onClick={handleEditClick} />
             </h2>
             <div className="flex flex-col justify-between items-center">
-                <select
-                    value={paymentType}
-                    onChange={handlePaymentTypeChange}
-                    className="mb-4 p-2 border rounded"
-                >
-                    <option value="Card">Card</option>
-                    <option value="Bank">Bank</option>
-                </select>
+                <p className="text-lg font-semibold">{paymentType === 'Card' ? 'Card Payment' : 'Bank Transfer'}</p>
                 {paymentType === 'Card' ? (
                     <Card number="1234 5678 9012 3456" name="John Doe" expiry="12/24" />
                 ) : (
                     <div>
-                    <p>
-                        account number: 1234567890
-                    </p>
-                    <p>
-                        bank bank: heaven bank
-                    </p>
-                    <p>
-                        account name: Adedokun Peter Akintomiwa
-                    </p>
+                        <p>Account Number: <strong>1234567890</strong></p>
+                        <p>Bank Name: <strong>Heaven Bank</strong></p>
+                        <p>Account Name: <strong>Adedokun Peter Akintomiwa</strong></p>
                     </div>
                 )}
             </div>
+            
+            {/* Modal for editing payment method */}
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                {/* Modal content for editing payment method */}
                 <div>
                     <h2 className="text-xl font-bold mb-4">Edit Payment Method</h2>
                     <select
-                        value={paymentType}
-                        onChange={handlePaymentTypeChange}
+                        value={tempPaymentType}
+                        onChange={(e) => setTempPaymentType(e.target.value)}
                         className="mb-4 p-2 border rounded w-full"
                     >
                         <option value="Card">Card</option>
                         <option value="Bank">Bank</option>
                     </select>
-                    <button
-                        onClick={() => setModalOpen(false)}
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
-                    >
+                    <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded">
                         Save
                     </button>
                 </div>

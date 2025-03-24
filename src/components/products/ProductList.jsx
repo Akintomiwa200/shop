@@ -28,7 +28,7 @@ const ProductList = ({ products, handleProductClick }) => {
           <div className="relative h-full flex flex-col justify-between">
             <div onClick={() => handleProductClick(product)}>
               {product.photos && product.photos[0] && (
-                <img src={`https://api.timbu.cloud/images/${product.photos[0].url}`} alt={product.name} className="w-full h-64 object-cover" />
+                <img src={`https://shoppy-pzzi.onrender.com/${product.photos[0].url}`} alt={product.name} className="w-full h-64 object-cover" />
               )}
               <h2 className="text-sm font-bold mt-2 text-justify overflow-hidden whitespace-nowrap overflow-ellipsis">{product.name}</h2>
               <p className='text-xs lg:xl overflow-hidden whitespace-nowrap overflow-ellipsis'>{product.description}</p>

@@ -1,8 +1,12 @@
-// src/components/EditAddressModal.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const EditAddressModal = ({ isOpen, onClose, onSave, initialAddress }) => {
     const [address, setAddress] = useState(initialAddress);
+
+    // Update the state whenever the initialAddress prop changes
+    useEffect(() => {
+        setAddress(initialAddress);
+    }, [initialAddress]);
 
     const handleSave = () => {
         onSave(address);

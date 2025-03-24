@@ -20,9 +20,9 @@ const ProductTemplate = () => {
             
             
             
-            const url = new URL('https://api.timbu.com/v2/');
+            const url = new URL('https://shoppy-pzzi.onrender.com/');
            
-            //const url = new URL('https://timbu-get-all-products.reavdev.workers.dev/');
+            //const url = new URL('https://shoppy-pzzi.onrender.com/');
             url.searchParams.append('organization_id', organizationId);
             url.searchParams.append('Appid', appId);
             url.searchParams.append('Apikey', apiKey);
