@@ -10,7 +10,14 @@ export const UserProvider = ({ children }) => {
   const fetchUserData = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/profile");
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setUser(null);
+        return;
+      }
+      const res = await fetch("/api/auth/profile", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       if (!res.ok) throw new Error("Failed to fetch user");
       const data = await res.json();
       setUser(data);
@@ -24,8 +31,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     fetchUserData();
-    const interval = setInterval(fetchUserData, 10000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -35,10 +40,10 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-export const useUser = () => {
+export const useUserContext = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("useUser must be used within a UserProvider");
+    throw new Error("useUserContext must be used within a UserProvider");
   }
   return context;
 };
