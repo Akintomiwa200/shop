@@ -1,44 +1,30 @@
-import { useState } from "react";
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { endpoints } from '../config';
+import { useUser } from '../context/UserContext';
 
-const useLogin = () => {
-  const [loading, setLoading] = useState(false);
+export const useLogin = () => {
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  const login = async (data) => {
-    setLoading(true);
+  const login = async (email, password) => {
+    setIsLoading(true);
     setError(null);
-    setSuccess(false);
 
     try {
-      const response = await fetch("https://shoppy-pzzi.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      // Check if response is valid JSON
-      const text = await response.text();
-      try {
-        const result = JSON.parse(text);
-        if (!response.ok) throw new Error(result.message || "Login failed");
-
-        // Save user token
-        localStorage.setItem("token", result.token);
-        setSuccess(true);
-      } catch (jsonError) {
-        throw new Error("Invalid JSON response from server");
-      }
+      const response = await axios.post(endpoints.auth.login, { email, password });
+      localStorage.setItem('token', response.data.token);
+      setUser(response.data.user);
+      navigate('/');
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || 'An error occurred');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { login, loading, error, success };
+  return { login, isLoading, error };
 };
-
-export default useLogin;

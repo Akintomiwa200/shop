@@ -1,44 +1,26 @@
-import { useState } from "react";
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { endpoints } from '../config';
 
-const useSignup = () => {
-  const [loading, setLoading] = useState(false);
+export const useSignup = () => {
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const signup = async (data) => {
-    setLoading(true);
+  const signup = async (userData) => {
+    setIsLoading(true);
     setError(null);
-    setSuccess(false);
 
     try {
-      const response = await fetch("https://shoppy-pzzi.onrender.com/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      // Handle non-JSON responses
-      const contentType = response.headers.get("content-type");
-      let result;
-      if (contentType && contentType.includes("application/json")) {
-        result = await response.json();
-      } else {
-        throw new Error("Unexpected response from server");
-      }
-
-      if (!response.ok) throw new Error(result.message || "Signup failed");
-
-      setSuccess(true);
+      await axios.post(endpoints.auth.register, userData);
+      navigate('/login');
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || 'An error occurred');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { signup, loading, error, success };
+  return { signup, isLoading, error };
 };
-
-export default useSignup;
