@@ -1,15 +1,27 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Shoppy - E-commerce Platform
 
-Currently, two official plugins are available:
+A modern e-commerce platform built with React, featuring secure payments via Paystack.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Product browsing and search
+- Shopping cart management
+- User authentication
+- Secure payment processing with Paystack
+- Order tracking
+- Admin dashboard
 
+## Tech Stack
+- React + Vite
+- Tailwind CSS
+- Axios for API calls
+- Paystack payment gateway
 
+## Setup
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Create a `.env` file with your Paystack public key
+4. Run the development server: `npm run dev`
 
-
-
-Figma
-https://www.figma.com/design/smqHs2f95LVI5H3zkbUqt8/Arries-2?node-id=65-682&t=1GslTAx9leFLDBXK-0
+## Payment Integration
+This project uses Paystack for payment processing. Ensure you have set up your Paystack account and added your public key to the environment variables.

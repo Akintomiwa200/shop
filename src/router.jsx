@@ -15,6 +15,7 @@ import Payment from "./pages/dashboard/payment/Payment";
 import ProductM from "./pages/dashboard/product/Product";
 import Users from "./pages/dashboard/users/Users";
 import Settings from "./pages/dashboard/settings/Settings";
+import OrderSuccess from "./pages/OrderSuccess";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
         element: <Settings/>
       }
     ]
+  },
+  {
+    path: "/order-success",
+    element: <OrderSuccess />
   }
   // {
   //   path

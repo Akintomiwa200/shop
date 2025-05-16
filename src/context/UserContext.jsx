@@ -1,15 +1,16 @@
+
 import { createContext, useContext, useState, useEffect } from "react";
 
 const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchUserData = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/profile"); 
+      const res = await fetch("/api/auth/profile");
       if (!res.ok) throw new Error("Failed to fetch user");
       const data = await res.json();
       setUser(data);
@@ -28,17 +29,16 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, loading, fetchUserData }}>
+    <UserContext.Provider value={{ user, setUser, loading, fetchUserData }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-// Custom hook
-export const useUserContext = () => {
+export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("useUserContext must be used within a UserProvider");
+    throw new Error("useUser must be used within a UserProvider");
   }
   return context;
 };
