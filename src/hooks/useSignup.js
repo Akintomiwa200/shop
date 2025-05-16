@@ -1,26 +1,30 @@
+
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { endpoints } from '../config';
 
-export const useSignup = () => {
+const useSignup = () => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const signup = async (userData) => {
-    setIsLoading(true);
+    setLoading(true);
     setError(null);
-
     try {
       await axios.post(endpoints.auth.register, userData);
-      navigate('/login');
+      setSuccess(true);
+      setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  return { signup, isLoading, error };
+  return { signup, loading, error, success };
 };
+
+export default useSignup;

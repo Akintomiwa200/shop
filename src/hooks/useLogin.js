@@ -1,30 +1,34 @@
+
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { endpoints } from '../config';
-import { useUser } from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 
-export const useLogin = () => {
+const useLogin = () => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const { setUser } = useUser();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const { setUser } = useUserContext();
   const navigate = useNavigate();
 
-  const login = async (email, password) => {
-    setIsLoading(true);
+  const login = async (formData) => {
+    setLoading(true);
     setError(null);
-
     try {
-      const response = await axios.post(endpoints.auth.login, { email, password });
+      const response = await axios.post(endpoints.auth.login, formData);
       localStorage.setItem('token', response.data.token);
       setUser(response.data.user);
-      navigate('/');
+      setSuccess(true);
+      setTimeout(() => navigate('/'), 1500);
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  return { login, isLoading, error };
+  return { login, loading, error, success };
 };
+
+export default useLogin;
