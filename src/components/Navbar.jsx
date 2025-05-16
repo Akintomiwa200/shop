@@ -1,36 +1,3 @@
-// import { BiMessage } from "react-icons/bi";
-// import UserAvatar from "../assets/user-avatar.jpg";
-// import { FiRefreshCcw } from "react-icons/fi";
-// import { CgBell } from "react-icons/cg";
-
-
-
-
-// const Navbar = () => {
-//   return (
-//     <nav className="flex justify-between items-center p-4 px-16 bg-white w-full shadow-md">
-//       <div className="flex items-center">
-//       </div>
-//       <div className="flex justify-center items-center gap-2">
-//         <CgBell size={20} className="cursor-pointer" />
-//         <div className="flex">
-//           <BiMessage size={24} className="relative flex cursor-pointer " />
-//           <em className=" flex -translate-y-4 -translate-x-2 h-6 w-6 justify-center items-center rounded-full  bg-blue-500">4</em>
-//         </div>
-//         <img src={UserAvatar} alt="User Avatar" className="w-10 h-10 rounded-full" />
-//         <span className="text-gray-700 font-medium">Grace Mark</span>
-
-//         <FiRefreshCcw size={18} className="text-gray-500 cursor-pointer" />
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-
-
-
 import { useState, useEffect } from "react";
 import { BiMessage } from "react-icons/bi";
 import { FiRefreshCcw } from "react-icons/fi";
@@ -38,7 +5,7 @@ import { CgBell } from "react-icons/cg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useUserContext } from "../context/UserContext"; // Assuming user context is available
 import { useNavigate } from "react-router-dom";
-import UserAvatar from "../assets/user-avatar.jpg";
+import UserAvatar from "../assets/landingimage/img11.png";
 
 const Navbar = () => {
   const { user, fetchUserData } = useUserContext(); // Real-time user context
